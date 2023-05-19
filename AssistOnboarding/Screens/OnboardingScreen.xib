@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="AssistOnboarding" customModuleProvider="target">
             <connections>
+                <outlet property="onboardingCollectionView" destination="j3e-a6-jj9" id="Hth-oG-Oxd"/>
                 <outlet property="view" destination="lAO-lu-08j" id="1Qm-YE-0I2"/>
             </connections>
         </placeholder>
@@ -18,28 +19,37 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gQb-9A-Wqf">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gQb-9A-Wqf">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j3e-a6-jj9">
-                    <rect key="frame" x="0.0" y="159" width="393" height="488"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ilg-sr-o0Z">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j3e-a6-jj9">
+                    <rect key="frame" x="0.0" y="100" width="393" height="547"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ilg-sr-o0Z">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="iNC-Gh-cQt"/>
+                        <outlet property="delegate" destination="-1" id="gst-dm-qNO"/>
+                    </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1e-wn-Cpn">
                     <rect key="frame" x="31" y="675" width="331" height="57"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                     <inset key="contentEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="18"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="Continue">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="28"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fkg-0a-KAX"/>
@@ -50,7 +60,7 @@
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="top" secondItem="j3e-a6-jj9" secondAttribute="bottom" constant="28" id="9P6-iG-p1f"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" id="BNe-jt-Cbn"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" id="DZU-gv-ahk"/>
-                <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="fkg-0a-KAX" secondAttribute="top" constant="100" id="IFq-DJ-Whk"/>
+                <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" constant="100" id="IFq-DJ-Whk"/>
                 <constraint firstAttribute="trailing" secondItem="gQb-9A-Wqf" secondAttribute="trailing" id="L1w-91-Q1E"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="leading" secondItem="lAO-lu-08j" secondAttribute="leading" id="hQb-Aq-g20"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="31" id="hUp-Wl-iTg"/>
