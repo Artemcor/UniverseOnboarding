@@ -50,6 +50,9 @@
                             <integer key="value" value="28"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="continueButton:" destination="-1" eventType="touchUpInside" id="DH8-rv-91O"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fkg-0a-KAX"/>

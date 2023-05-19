@@ -17,7 +17,6 @@ class OnboardingViewController: UIViewController {
             }
             
             struct Configuration {
-                static let cellSize = CGSize(width: 360, height: 254)
                 static let minimumLineSpacingForSection: CGFloat = 16
                 static let insetForSection = UIEdgeInsets(top: 0, left: 31, bottom: 0, right: 31)
             }
@@ -28,15 +27,48 @@ class OnboardingViewController: UIViewController {
     
     @IBOutlet private weak var onboardingCollectionView: UICollectionView!
     
+    // MARK: - Variables
+
+    lazy var cellWidth = {
+        onboardingCollectionView.bounds.width - Constants.CollectionView.Configuration.insetForSection.left * 2
+    }()
+    
+    lazy var cellSize = {
+        let width = cellWidth
+        let height = onboardingCollectionView.bounds.height
+        
+        return CGSize(width: width, height: height)
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureOnboardingCollectionView()
         registerCell()
     }
     
+    // MARK: - Actions
+    
+    @IBAction private func continueButton(_ sender: Any) {
+        let contentOffSet = onboardingCollectionView.contentOffset
+        let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
+        
+        UIView.animate(withDuration: 0.8,
+                       delay: 0,
+                       usingSpringWithDamping: 0.85,
+                       initialSpringVelocity: 1,
+                       options: .curveLinear) {
+            self.onboardingCollectionView.contentOffset = CGPoint(x: contentOffSet.x + additionalWidth, y: 0)
+        }
+    }
+    
     // MARK: - Private
+    
+    private func configureOnboardingCollectionView() {
+        onboardingCollectionView.isScrollEnabled = false
+    }
     
     private func registerCell() {
         let cell = UINib(nibName: Constants.CollectionView.CellIdentifiers.onboardingCell, bundle: nil)
@@ -60,10 +92,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = onboardingCollectionView.bounds.width - 62
-        let height = onboardingCollectionView.bounds.height
-
-        return CGSize(width: width, height: height)
+        return cellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
