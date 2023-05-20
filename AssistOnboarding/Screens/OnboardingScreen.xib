@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="AssistOnboarding" customModuleProvider="target">
             <connections>
                 <outlet property="onboardingCollectionView" destination="j3e-a6-jj9" id="Hth-oG-Oxd"/>
+                <outlet property="termsTextView" destination="W1g-jl-k6E" id="b4r-Ed-eDw"/>
                 <outlet property="view" destination="lAO-lu-08j" id="1Qm-YE-0I2"/>
             </connections>
         </placeholder>
@@ -54,23 +55,38 @@
                         <action selector="continueButton:" destination="-1" eventType="touchUpInside" id="DH8-rv-91O"/>
                     </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="By continuing you accept our:  Terms of Use, Privacy Policy and Subscription Terms" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W1g-jl-k6E">
+                    <rect key="frame" x="36" y="756" width="321" height="62"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="rvc-fe-ZyF"/>
+                    </connections>
+                </textView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fkg-0a-KAX"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gQb-9A-Wqf" secondAttribute="bottom" id="0KK-KO-FEB"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="x1e-wn-Cpn" secondAttribute="trailing" constant="31" id="1Dd-Yw-hL5"/>
+                <constraint firstItem="W1g-jl-k6E" firstAttribute="centerX" secondItem="gQb-9A-Wqf" secondAttribute="centerX" id="1QK-mD-2Tm"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="top" secondItem="j3e-a6-jj9" secondAttribute="bottom" constant="28" id="9P6-iG-p1f"/>
+                <constraint firstItem="W1g-jl-k6E" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="36" id="BBS-Ku-uK9"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" id="BNe-jt-Cbn"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" id="DZU-gv-ahk"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" constant="100" id="IFq-DJ-Whk"/>
                 <constraint firstAttribute="trailing" secondItem="gQb-9A-Wqf" secondAttribute="trailing" id="L1w-91-Q1E"/>
+                <constraint firstItem="W1g-jl-k6E" firstAttribute="bottom" secondItem="fkg-0a-KAX" secondAttribute="bottom" id="XUa-85-Mx6"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="leading" secondItem="lAO-lu-08j" secondAttribute="leading" id="hQb-Aq-g20"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="31" id="hUp-Wl-iTg"/>
+                <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="W1g-jl-k6E" secondAttribute="trailing" constant="36" id="ic9-Be-SR3"/>
+                <constraint firstItem="W1g-jl-k6E" firstAttribute="top" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="24" id="lbJ-DH-27d"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="j3e-a6-jj9" secondAttribute="trailing" id="m9D-mm-Pyv"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="bottom" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="86" id="vzJ-J0-shF"/>
             </constraints>
-            <point key="canvasLocation" x="-306" y="13"/>
+            <point key="canvasLocation" x="-306.1068702290076" y="12.67605633802817"/>
         </view>
     </objects>
     <resources>

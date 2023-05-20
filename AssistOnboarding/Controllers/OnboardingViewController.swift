@@ -26,6 +26,7 @@ class OnboardingViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet private weak var onboardingCollectionView: UICollectionView!
+    @IBOutlet private weak var termsTextView: UITextView!
     
     // MARK: - Variables
     
@@ -59,6 +60,7 @@ class OnboardingViewController: UIViewController {
 
         configureOnboardingCollectionView()
         registerCell()
+        configureTermsTextView()
     }
     
     // MARK: - Actions
@@ -90,6 +92,23 @@ class OnboardingViewController: UIViewController {
     private func registerCell() {
         let cell = UINib(nibName: Constants.CollectionView.CellIdentifiers.onboardingCell, bundle: nil)
         onboardingCollectionView.register(cell, forCellWithReuseIdentifier: Constants.CollectionView.CellIdentifiers.onboardingCell)
+    }
+    
+    private func configureTermsTextView() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.gray, .paragraphStyle: paragraphStyle]
+
+        let attributedString = NSMutableAttributedString(string: "By continuing you accept our: \nTerms of Use, Privacy Policy and Subscription Terms", attributes: attributes)
+        
+        attributedString.addAttribute(.link, value: "https://assistai.guru/documents/tos.html", range: (attributedString.string as NSString).range(of: "Terms of Use"))
+        attributedString.addAttribute(.link, value: "https://assistai.guru/documents/privacy.html", range: (attributedString.string as NSString).range(of: "Privacy Policy"))
+        attributedString.addAttribute(.link, value: "https://assistai.guru/documents/subscription.html", range: (attributedString.string as NSString).range(of: "Subscription Terms"))
+        
+        termsTextView.isSelectable = true
+        termsTextView.isEditable = false
+
+        termsTextView.attributedText = attributedString
     }
 }
 
@@ -123,5 +142,21 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return Constants.CollectionView.Configuration.insetForSection
+    }
+}
+
+// MARK: - TextView delegate
+
+extension OnboardingViewController: UITextViewDelegate {
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        textView.delegate = nil
+        textView.selectedTextRange = nil
+        textView.delegate = self
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
 }
