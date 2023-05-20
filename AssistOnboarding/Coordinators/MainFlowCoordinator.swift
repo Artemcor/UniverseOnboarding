@@ -33,7 +33,10 @@ class MainFlowCoordinator {
     // MARK: - Public
     
     func createFlow() {
-        let onboardingViewController = OnboardingViewController(nibName: Constants.nibNames.onboardingScreen, bundle: nil)
+        let model = OnboardingScreensModel()
+        let onboardingViewController = OnboardingViewController(nibName: Constants.nibNames.onboardingScreen,
+                                                                bundle: nil,
+                                                                model: model)
         
         window.rootViewController = onboardingViewController
         router = MainRouter(initialController: onboardingViewController)

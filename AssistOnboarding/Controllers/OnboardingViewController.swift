@@ -28,6 +28,8 @@ class OnboardingViewController: UIViewController {
     @IBOutlet private weak var onboardingCollectionView: UICollectionView!
     
     // MARK: - Variables
+    
+    let onboardingsModel: [OnboardingScreenModel]
 
     lazy var cellWidth = {
         onboardingCollectionView.bounds.width - Constants.CollectionView.Configuration.insetForSection.left * 2
@@ -41,6 +43,16 @@ class OnboardingViewController: UIViewController {
     }()
     
     // MARK: - Lifecycle
+
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, model: OnboardingScreensModel) {
+        onboardingsModel = model.onboardingsModel
+        
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +92,7 @@ class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        return onboardingsModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,6 +100,11 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
             fatalError("Error: OnboardingCollectionView - not loaded")
         }
         
+        let model = onboardingsModel[indexPath.item]
+        let config = OnboardingCell.Configuration(id: model.id,
+                                                  mainText: model.mainTitle,
+                                                  secondaryText: model.secondaryTitle)
+        cell.configure(config)
         return cell
     }
     
