@@ -67,12 +67,17 @@ class OnboardingViewController: UIViewController {
         let contentOffSet = onboardingCollectionView.contentOffset
         let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
         
-        UIView.animate(withDuration: 0.8,
-                       delay: 0,
-                       usingSpringWithDamping: 0.85,
-                       initialSpringVelocity: 1,
-                       options: .curveLinear) {
-            self.onboardingCollectionView.contentOffset = CGPoint(x: contentOffSet.x + additionalWidth, y: 0)
+        if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
+            
+            UIView.animate(withDuration: 0.8,
+                           delay: 0,
+                           usingSpringWithDamping: 0.85,
+                           initialSpringVelocity: 1,
+                           options: .curveLinear) {
+
+                self.onboardingCollectionView.contentOffset = CGPoint(x: contentOffSet.x + additionalWidth, y: 0)
+                self.onboardingCollectionView.layoutIfNeeded()
+            }
         }
     }
     
