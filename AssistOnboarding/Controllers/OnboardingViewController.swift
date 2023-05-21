@@ -33,7 +33,7 @@ class OnboardingViewController: UIViewController {
     // MARK: - Variables
     
     private let onboardingModel: [OnboardingScreenModel]
-    private var continueButtonClick = 0
+    private var onboardingButtonClick = 0
 
     lazy private var cellWidth = {
         onboardingCollectionView.bounds.width - Constants.CollectionView.Configuration.insetForSection.left * 2
@@ -74,9 +74,10 @@ class OnboardingViewController: UIViewController {
         
         if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
             
-            continueButtonClick += 1
+            onboardingButtonClick += 1
             
-            configureTermsPageControlViews()
+            configureVisibilityOfTermsPageControlViews()
+            configureOnboardingButton()
             onboardingPageControl.stepToNextPage()
             
             UIView.animate(withDuration: 0.8,
@@ -119,10 +120,27 @@ class OnboardingViewController: UIViewController {
         termsTextView.attributedText = attributedString
     }
     
-    private func configureTermsPageControlViews() {
-        if continueButtonClick == 1 || continueButtonClick == onboardingModel.count - 1 {
-            onboardingPageControl.isHidden.toggle()
-            termsTextView.isHidden.toggle()
+    private func configureVisibilityOfTermsPageControlViews() {
+        if onboardingButtonClick == 1 || onboardingButtonClick == onboardingModel.count - 1 {
+            if onboardingPageControl.isHidden {
+                onboardingPageControl.fadeIn()
+                termsTextView.fadeOut()
+            } else {
+                onboardingPageControl.fadeOut()
+                termsTextView.fadeIn()
+            }
+        }
+    }
+    
+    private func configureOnboardingButton() {
+        if onboardingButtonClick == onboardingModel.count - 1 {
+
+            UIView.performWithoutAnimation {
+                self.onboardingButton.setTitle("Try Free & Subscribe", for: .normal)
+                self.onboardingButton.layoutIfNeeded()
+            }
+            
+
         }
     }
 }
