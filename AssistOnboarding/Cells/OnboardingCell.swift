@@ -12,7 +12,7 @@ class OnboardingCell: UICollectionViewCell {
     struct Configuration {
         let id: Int
         let mainText: String
-        let secondaryText: String
+        let secondaryText: NSAttributedString
     }
     
     // MARK: - Outlets
@@ -26,6 +26,6 @@ class OnboardingCell: UICollectionViewCell {
     func configure(_ configuration: Configuration) {
         illustrationImage.image = UIImage(named: "OnboardingIllustration\(configuration.id)")
         mainLabel.text = configuration.mainText
-        secondaryLabel.text = configuration.secondaryText
+        secondaryLabel.attributedText = configuration.secondaryText
     }
 }
