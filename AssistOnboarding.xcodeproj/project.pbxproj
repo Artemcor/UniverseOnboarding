@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A75C5D8C2A19576E00E6D89B /* OnboardingPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C5D8B2A19576E00E6D89B /* OnboardingPageControl.swift */; };
 		A786A05F2A165D610006E105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A786A05E2A165D610006E105 /* AppDelegate.swift */; };
 		A786A0612A165D610006E105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A786A0602A165D610006E105 /* SceneDelegate.swift */; };
 		A786A0632A165D610006E105 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A786A0622A165D610006E105 /* OnboardingViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A75C5D8B2A19576E00E6D89B /* OnboardingPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageControl.swift; sourceTree = "<group>"; };
 		A786A05B2A165D610006E105 /* AssistOnboarding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssistOnboarding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A786A05E2A165D610006E105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A786A0602A165D610006E105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A769AD3A2A1A34B9001DEA8B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A75C5D8B2A19576E00E6D89B /* OnboardingPageControl.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A786A0522A165D610006E105 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 				A786A0812A16AF930006E105 /* Coordinators */,
 				A786A07A2A16A7F70006E105 /* Models */,
 				A786A07B2A16A80D0006E105 /* Controllers */,
+				A769AD3A2A1A34B9001DEA8B /* Views */,
 				A786A0782A16A7E30006E105 /* Cells */,
 				A786A0792A16A7EC0006E105 /* Screens */,
 				A786A0672A165D630006E105 /* Assets.xcassets */,
@@ -205,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A75C5D8C2A19576E00E6D89B /* OnboardingPageControl.swift in Sources */,
 				A786A0862A16AFCA0006E105 /* RouterProtocol.swift in Sources */,
 				A786A0632A165D610006E105 /* OnboardingViewController.swift in Sources */,
 				A786A0842A16AFBC0006E105 /* MainRouter.swift in Sources */,

@@ -27,16 +27,17 @@ class OnboardingViewController: UIViewController {
     
     @IBOutlet private weak var onboardingCollectionView: UICollectionView!
     @IBOutlet private weak var termsTextView: UITextView!
+    @IBOutlet private weak var onboardingPageControl: OnboardingPageControl!
     
     // MARK: - Variables
     
-    let onboardingsModel: [OnboardingScreenModel]
+    let onboardingModel: [OnboardingScreenModel]
 
-    lazy var cellWidth = {
+    lazy private var cellWidth = {
         onboardingCollectionView.bounds.width - Constants.CollectionView.Configuration.insetForSection.left * 2
     }()
     
-    lazy var cellSize = {
+    lazy private var cellSize = {
         let width = cellWidth
         let height = onboardingCollectionView.bounds.height
         
@@ -46,7 +47,7 @@ class OnboardingViewController: UIViewController {
     // MARK: - Lifecycle
 
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, model: OnboardingScreensModel) {
-        onboardingsModel = model.onboardingsModel
+        onboardingModel = model.onboardingModel
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -70,6 +71,8 @@ class OnboardingViewController: UIViewController {
         let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
         
         if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
+            
+            onboardingPageControl.stepToNextPage()
             
             UIView.animate(withDuration: 0.8,
                            delay: 0,
@@ -116,7 +119,7 @@ class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return onboardingsModel.count
+        return onboardingModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -124,7 +127,7 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
             fatalError("Error: OnboardingCollectionView - not loaded")
         }
         
-        let model = onboardingsModel[indexPath.item]
+        let model = onboardingModel[indexPath.item]
         let config = OnboardingCell.Configuration(id: model.id,
                                                   mainText: model.mainTitle,
                                                   secondaryText: model.secondaryTitle)

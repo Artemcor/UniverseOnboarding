@@ -14,10 +14,10 @@ struct OnboardingScreenModel {
 }
 
 struct OnboardingScreensModel {
-    let onboardingsModel: [OnboardingScreenModel]
+    let onboardingModel: [OnboardingScreenModel]
     
     init() {
-        onboardingsModel = [
+        onboardingModel = [
             OnboardingScreenModel(id: 0,
                                   mainTitle: "Your Personal Assistant",
                                   secondaryTitle: "Simplify your life with an AI companion"),

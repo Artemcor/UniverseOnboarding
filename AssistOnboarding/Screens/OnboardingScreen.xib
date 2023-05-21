@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="AssistOnboarding" customModuleProvider="target">
             <connections>
                 <outlet property="onboardingCollectionView" destination="j3e-a6-jj9" id="Hth-oG-Oxd"/>
+                <outlet property="onboardingPageControl" destination="z9c-Bk-0Nv" id="A3m-sO-egS"/>
                 <outlet property="termsTextView" destination="W1g-jl-k6E" id="b4r-Ed-eDw"/>
                 <outlet property="view" destination="lAO-lu-08j" id="1Qm-YE-0I2"/>
             </connections>
@@ -65,6 +66,25 @@
                         <outlet property="delegate" destination="-1" id="rvc-fe-ZyF"/>
                     </connections>
                 </textView>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-Bk-0Nv" customClass="OnboardingPageControl" customModule="AssistOnboarding" customModuleProvider="target">
+                    <rect key="frame" x="151" y="804" width="91" height="4"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="91" id="aDH-aO-xmW"/>
+                        <constraint firstAttribute="height" constant="4" id="rRr-Na-GRX"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfPage">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="currentPage">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fkg-0a-KAX"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -79,6 +99,7 @@
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" constant="100" id="IFq-DJ-Whk"/>
                 <constraint firstAttribute="trailing" secondItem="gQb-9A-Wqf" secondAttribute="trailing" id="L1w-91-Q1E"/>
                 <constraint firstItem="W1g-jl-k6E" firstAttribute="bottom" secondItem="fkg-0a-KAX" secondAttribute="bottom" id="XUa-85-Mx6"/>
+                <constraint firstItem="z9c-Bk-0Nv" firstAttribute="centerX" secondItem="lAO-lu-08j" secondAttribute="centerX" id="Ydy-1h-4Ps"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="leading" secondItem="lAO-lu-08j" secondAttribute="leading" id="hQb-Aq-g20"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="31" id="hUp-Wl-iTg"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="W1g-jl-k6E" secondAttribute="trailing" constant="36" id="ic9-Be-SR3"/>
