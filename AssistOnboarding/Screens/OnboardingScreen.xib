@@ -25,7 +25,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j3e-a6-jj9">
-                    <rect key="frame" x="0.0" y="100" width="393" height="547"/>
+                    <rect key="frame" x="0.0" y="100" width="393" height="581"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ilg-sr-o0Z">
                         <size key="itemSize" width="128" height="128"/>
@@ -39,8 +39,11 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1e-wn-Cpn">
-                    <rect key="frame" x="31" y="675" width="331" height="57"/>
+                    <rect key="frame" x="31" y="709" width="331" height="56"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="qB6-19-eso"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                     <inset key="contentEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="18"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -57,8 +60,11 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="By continuing you accept our:  Terms of Use, Privacy Policy and Subscription Terms" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W1g-jl-k6E">
-                    <rect key="frame" x="36" y="756" width="321" height="62"/>
+                    <rect key="frame" x="36" y="780" width="321" height="38"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="24X-mG-RmL"/>
+                    </constraints>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -66,8 +72,8 @@
                         <outlet property="delegate" destination="-1" id="rvc-fe-ZyF"/>
                     </connections>
                 </textView>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-Bk-0Nv" customClass="OnboardingPageControl" customModule="AssistOnboarding" customModuleProvider="target">
-                    <rect key="frame" x="151" y="804" width="91" height="4"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-Bk-0Nv" customClass="OnboardingPageControl" customModule="AssistOnboarding" customModuleProvider="target">
+                    <rect key="frame" x="151" y="797" width="91" height="4"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="91" id="aDH-aO-xmW"/>
@@ -91,21 +97,20 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gQb-9A-Wqf" secondAttribute="bottom" id="0KK-KO-FEB"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="x1e-wn-Cpn" secondAttribute="trailing" constant="31" id="1Dd-Yw-hL5"/>
-                <constraint firstItem="W1g-jl-k6E" firstAttribute="centerX" secondItem="gQb-9A-Wqf" secondAttribute="centerX" id="1QK-mD-2Tm"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="top" secondItem="j3e-a6-jj9" secondAttribute="bottom" constant="28" id="9P6-iG-p1f"/>
                 <constraint firstItem="W1g-jl-k6E" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="36" id="BBS-Ku-uK9"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" id="BNe-jt-Cbn"/>
+                <constraint firstItem="W1g-jl-k6E" firstAttribute="bottom" secondItem="fkg-0a-KAX" secondAttribute="bottom" id="DW1-n2-Ai7"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" id="DZU-gv-ahk"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" constant="100" id="IFq-DJ-Whk"/>
                 <constraint firstAttribute="trailing" secondItem="gQb-9A-Wqf" secondAttribute="trailing" id="L1w-91-Q1E"/>
-                <constraint firstItem="W1g-jl-k6E" firstAttribute="bottom" secondItem="fkg-0a-KAX" secondAttribute="bottom" id="XUa-85-Mx6"/>
                 <constraint firstItem="z9c-Bk-0Nv" firstAttribute="centerX" secondItem="lAO-lu-08j" secondAttribute="centerX" id="Ydy-1h-4Ps"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="leading" secondItem="lAO-lu-08j" secondAttribute="leading" id="hQb-Aq-g20"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="31" id="hUp-Wl-iTg"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="W1g-jl-k6E" secondAttribute="trailing" constant="36" id="ic9-Be-SR3"/>
-                <constraint firstItem="W1g-jl-k6E" firstAttribute="top" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="24" id="lbJ-DH-27d"/>
+                <constraint firstItem="W1g-jl-k6E" firstAttribute="firstBaseline" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="15" id="lbJ-DH-27d"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="j3e-a6-jj9" secondAttribute="trailing" id="m9D-mm-Pyv"/>
-                <constraint firstItem="fkg-0a-KAX" firstAttribute="bottom" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="86" id="vzJ-J0-shF"/>
+                <constraint firstItem="z9c-Bk-0Nv" firstAttribute="top" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="32" id="nHQ-Dm-lnf"/>
             </constraints>
             <point key="canvasLocation" x="-306.1068702290076" y="12.67605633802817"/>
         </view>

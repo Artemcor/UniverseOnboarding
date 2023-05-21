@@ -27,11 +27,13 @@ class OnboardingViewController: UIViewController {
     
     @IBOutlet private weak var onboardingCollectionView: UICollectionView!
     @IBOutlet private weak var termsTextView: UITextView!
+    @IBOutlet private weak var onboardingButton: UIButton!
     @IBOutlet private weak var onboardingPageControl: OnboardingPageControl!
     
     // MARK: - Variables
     
-    let onboardingModel: [OnboardingScreenModel]
+    private let onboardingModel: [OnboardingScreenModel]
+    private var continueButtonClick = 0
 
     lazy private var cellWidth = {
         onboardingCollectionView.bounds.width - Constants.CollectionView.Configuration.insetForSection.left * 2
@@ -72,6 +74,9 @@ class OnboardingViewController: UIViewController {
         
         if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
             
+            continueButtonClick += 1
+            
+            configureTermsPageControlViews()
             onboardingPageControl.stepToNextPage()
             
             UIView.animate(withDuration: 0.8,
@@ -112,6 +117,13 @@ class OnboardingViewController: UIViewController {
         termsTextView.isEditable = false
 
         termsTextView.attributedText = attributedString
+    }
+    
+    private func configureTermsPageControlViews() {
+        if continueButtonClick == 1 || continueButtonClick == onboardingModel.count - 1 {
+            onboardingPageControl.isHidden.toggle()
+            termsTextView.isHidden.toggle()
+        }
     }
 }
 
