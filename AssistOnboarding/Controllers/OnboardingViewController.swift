@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 class OnboardingViewController: UIViewController {
+    
+    private enum AlertType {
+        case restorePurchase
+        case crossMark
+    }
     
     private struct Constants {
         
@@ -33,6 +39,10 @@ class OnboardingViewController: UIViewController {
     @IBOutlet private weak var crossButton: UIButton!
     
     // MARK: - Variables
+    
+    private let continueSubject = PassthroughSubject<Void, Never>()
+    private let alertSubject = PassthroughSubject<AlertType, Never>()
+    private var cancelable = Set<AnyCancellable>()
     
     private let onboardingModel: [OnboardingScreenModel]
     private var onboardingButtonClick = 0
@@ -68,38 +78,24 @@ class OnboardingViewController: UIViewController {
         configureTermsTextView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        subscribeToPublishers()
+    }
+    
     // MARK: - Actions
     
     @IBAction private func continueButtonAction(_ sender: Any) {
-        let contentOffSet = onboardingCollectionView.contentOffset
-        let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
-        
-        if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
-            
-            onboardingButtonClick += 1
-            
-            configureVisibilityOfTermsPageControlViews()
-            configureOnboardingButton()
-            onboardingPageControl.stepToNextPage()
-            
-            UIView.animate(withDuration: 0.8,
-                           delay: 0,
-                           usingSpringWithDamping: 0.85,
-                           initialSpringVelocity: 1,
-                           options: .curveLinear) {
-
-                self.onboardingCollectionView.contentOffset = CGPoint(x: contentOffSet.x + additionalWidth, y: 0)
-                self.onboardingCollectionView.layoutIfNeeded()
-            }
-        }
+        continueSubject.send()
     }
     
     @IBAction private func restoreButtonAction(_ sender: Any) {
-        present(AlertService.restoreAlert { }, animated: true)
+        alertSubject.send(.restorePurchase)
     }
     
     @IBAction private func crossButtonAction(_ sender: Any) {
-        present(AlertService.crossAlert { }, animated: true)
+        alertSubject.send(.crossMark)
     }
 
     // MARK: - Private
@@ -128,6 +124,43 @@ class OnboardingViewController: UIViewController {
         termsTextView.isEditable = false
 
         termsTextView.attributedText = attributedString
+    }
+    
+    private func subscribeToPublishers() {
+        continueSubject.sink { [self] in
+            let contentOffSet = onboardingCollectionView.contentOffset
+            let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
+            
+            if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
+                
+                onboardingButtonClick += 1
+                
+                configureVisibilityOfTermsPageControlViews()
+                configureOnboardingButton()
+                onboardingPageControl.stepToNextPage()
+                
+                UIView.animate(withDuration: 0.8,
+                               delay: 0,
+                               usingSpringWithDamping: 0.85,
+                               initialSpringVelocity: 1,
+                               options: .curveLinear) {
+
+                    self.onboardingCollectionView.contentOffset = CGPoint(x: contentOffSet.x + additionalWidth, y: 0)
+                    self.onboardingCollectionView.layoutIfNeeded()
+                }
+            }
+        }
+        .store(in: &cancelable)
+        
+        alertSubject.sink { [self] alertType in
+            switch alertType {
+            case .restorePurchase:
+                present(AlertService.restoreAlert { }, animated: true)
+            case .crossMark:
+                present(AlertService.crossAlert { }, animated: true)
+            }
+        }
+        .store(in: &cancelable)
     }
     
     private func configureVisibilityOfTermsPageControlViews() {
