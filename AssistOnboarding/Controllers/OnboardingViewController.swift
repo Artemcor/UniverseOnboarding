@@ -29,6 +29,8 @@ class OnboardingViewController: UIViewController {
     @IBOutlet private weak var termsTextView: UITextView!
     @IBOutlet private weak var onboardingButton: UIButton!
     @IBOutlet private weak var onboardingPageControl: OnboardingPageControl!
+    @IBOutlet private weak var restoreButton: UIButton!
+    @IBOutlet private weak var crossButton: UIButton!
     
     // MARK: - Variables
     
@@ -68,7 +70,7 @@ class OnboardingViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction private func continueButton(_ sender: Any) {
+    @IBAction private func continueButtonAction(_ sender: Any) {
         let contentOffSet = onboardingCollectionView.contentOffset
         let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
         
@@ -92,6 +94,14 @@ class OnboardingViewController: UIViewController {
         }
     }
     
+    @IBAction private func restoreButtonAction(_ sender: Any) {
+        present(AlertService.restoreAlert { }, animated: true)
+    }
+    
+    @IBAction private func crossButtonAction(_ sender: Any) {
+        present(AlertService.crossAlert { }, animated: true)
+    }
+
     // MARK: - Private
     
     private func configureOnboardingCollectionView() {
@@ -129,6 +139,11 @@ class OnboardingViewController: UIViewController {
                 onboardingPageControl.fadeOut()
                 termsTextView.fadeIn()
             }
+        }
+        
+        if onboardingButtonClick == onboardingModel.count - 1 {
+            restoreButton.isHidden = false
+            crossButton.isHidden = false
         }
     }
     

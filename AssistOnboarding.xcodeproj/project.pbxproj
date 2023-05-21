@@ -10,6 +10,7 @@
 		A75C5D8C2A19576E00E6D89B /* OnboardingPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C5D8B2A19576E00E6D89B /* OnboardingPageControl.swift */; };
 		A769AD3C2A1A7D26001DEA8B /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A769AD3B2A1A7D26001DEA8B /* OnboardingButton.swift */; };
 		A769AD3F2A1A8762001DEA8B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A769AD3E2A1A8762001DEA8B /* UIView+Extension.swift */; };
+		A769AD422A1A95A0001DEA8B /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A769AD412A1A95A0001DEA8B /* AlertService.swift */; };
 		A786A05F2A165D610006E105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A786A05E2A165D610006E105 /* AppDelegate.swift */; };
 		A786A0612A165D610006E105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A786A0602A165D610006E105 /* SceneDelegate.swift */; };
 		A786A0632A165D610006E105 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A786A0622A165D610006E105 /* OnboardingViewController.swift */; };
@@ -28,6 +29,7 @@
 		A75C5D8B2A19576E00E6D89B /* OnboardingPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageControl.swift; sourceTree = "<group>"; };
 		A769AD3B2A1A7D26001DEA8B /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		A769AD3E2A1A8762001DEA8B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		A769AD412A1A95A0001DEA8B /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		A786A05B2A165D610006E105 /* AssistOnboarding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssistOnboarding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A786A05E2A165D610006E105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A786A0602A165D610006E105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A769AD402A1A9585001DEA8B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A769AD412A1A95A0001DEA8B /* AlertService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		A786A0522A165D610006E105 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +108,7 @@
 				A786A07A2A16A7F70006E105 /* Models */,
 				A786A07B2A16A80D0006E105 /* Controllers */,
 				A769AD3A2A1A34B9001DEA8B /* Views */,
+				A769AD402A1A9585001DEA8B /* Services */,
 				A769AD3D2A1A8749001DEA8B /* Extensions */,
 				A786A0782A16A7E30006E105 /* Cells */,
 				A786A0792A16A7EC0006E105 /* Screens */,
@@ -240,6 +251,7 @@
 				A786A05F2A165D610006E105 /* AppDelegate.swift in Sources */,
 				A786A0732A168A2E0006E105 /* OnboardingScreensModel.swift in Sources */,
 				A786A0612A165D610006E105 /* SceneDelegate.swift in Sources */,
+				A769AD422A1A95A0001DEA8B /* AlertService.swift in Sources */,
 				A786A0802A16AF1B0006E105 /* MainFlowCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

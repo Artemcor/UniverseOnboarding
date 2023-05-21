@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,9 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="AssistOnboarding" customModuleProvider="target">
             <connections>
+                <outlet property="crossButton" destination="qad-8I-g4b" id="yzV-GK-a67"/>
                 <outlet property="onboardingButton" destination="x1e-wn-Cpn" id="vaf-uT-krV"/>
                 <outlet property="onboardingCollectionView" destination="j3e-a6-jj9" id="Hth-oG-Oxd"/>
                 <outlet property="onboardingPageControl" destination="z9c-Bk-0Nv" id="A3m-sO-egS"/>
+                <outlet property="restoreButton" destination="Ku2-Ht-2D7" id="XfC-6O-QbN"/>
                 <outlet property="termsTextView" destination="W1g-jl-k6E" id="b4r-Ed-eDw"/>
                 <outlet property="view" destination="lAO-lu-08j" id="1Qm-YE-0I2"/>
             </connections>
@@ -54,7 +57,7 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="continueButton:" destination="-1" eventType="touchUpInside" id="DH8-rv-91O"/>
+                        <action selector="continueButtonAction:" destination="-1" eventType="touchUpInside" id="DH8-rv-91O"/>
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="By continuing you accept our:  Terms of Use, Privacy Policy and Subscription Terms" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W1g-jl-k6E">
@@ -89,12 +92,42 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ku2-Ht-2D7">
+                    <rect key="frame" x="17" y="51" width="114" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Restore Purchase">
+                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="restoreButtonAction:" destination="-1" eventType="touchUpInside" id="Ift-X1-mF7"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qad-8I-g4b">
+                    <rect key="frame" x="354" y="57" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="JsX-Y9-Cwy"/>
+                        <constraint firstAttribute="height" constant="18" id="Y1H-s8-VUn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="contentEdgeInsets" minX="-2" minY="-2" maxX="-2" maxY="-2"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                    </state>
+                    <connections>
+                        <action selector="crossButtonAction:" destination="-1" eventType="touchUpInside" id="wbt-wG-I21"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fkg-0a-KAX"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gQb-9A-Wqf" secondAttribute="bottom" id="0KK-KO-FEB"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="x1e-wn-Cpn" secondAttribute="trailing" constant="31" id="1Dd-Yw-hL5"/>
+                <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="qad-8I-g4b" secondAttribute="trailing" constant="21" id="6xP-1r-1DW"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="top" secondItem="j3e-a6-jj9" secondAttribute="bottom" constant="28" id="9P6-iG-p1f"/>
                 <constraint firstItem="W1g-jl-k6E" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="36" id="BBS-Ku-uK9"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" id="BNe-jt-Cbn"/>
@@ -102,19 +135,23 @@
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" id="DZU-gv-ahk"/>
                 <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="lAO-lu-08j" secondAttribute="top" constant="100" id="IFq-DJ-Whk"/>
                 <constraint firstAttribute="trailing" secondItem="gQb-9A-Wqf" secondAttribute="trailing" id="L1w-91-Q1E"/>
+                <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="Ku2-Ht-2D7" secondAttribute="bottom" constant="20" id="UZn-iM-usb"/>
                 <constraint firstItem="z9c-Bk-0Nv" firstAttribute="centerX" secondItem="lAO-lu-08j" secondAttribute="centerX" id="Ydy-1h-4Ps"/>
                 <constraint firstItem="gQb-9A-Wqf" firstAttribute="leading" secondItem="lAO-lu-08j" secondAttribute="leading" id="hQb-Aq-g20"/>
                 <constraint firstItem="x1e-wn-Cpn" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="31" id="hUp-Wl-iTg"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="W1g-jl-k6E" secondAttribute="trailing" constant="36" id="ic9-Be-SR3"/>
+                <constraint firstItem="Ku2-Ht-2D7" firstAttribute="leading" secondItem="fkg-0a-KAX" secondAttribute="leading" constant="17" id="irJ-xa-iOf"/>
                 <constraint firstItem="W1g-jl-k6E" firstAttribute="firstBaseline" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="15" id="lbJ-DH-27d"/>
                 <constraint firstItem="fkg-0a-KAX" firstAttribute="trailing" secondItem="j3e-a6-jj9" secondAttribute="trailing" id="m9D-mm-Pyv"/>
                 <constraint firstItem="z9c-Bk-0Nv" firstAttribute="top" secondItem="x1e-wn-Cpn" secondAttribute="bottom" constant="32" id="nHQ-Dm-lnf"/>
+                <constraint firstItem="j3e-a6-jj9" firstAttribute="top" secondItem="qad-8I-g4b" secondAttribute="bottom" constant="25" id="tdf-xP-dBG"/>
             </constraints>
-            <point key="canvasLocation" x="-306.1068702290076" y="12.67605633802817"/>
+            <point key="canvasLocation" x="-436" y="-115"/>
         </view>
     </objects>
     <resources>
         <image name="Background" width="416" height="896"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
