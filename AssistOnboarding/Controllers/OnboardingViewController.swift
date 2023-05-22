@@ -12,7 +12,6 @@ import StoreKit
 class OnboardingViewController: UIViewController {
     
     private enum AlertType {
-        case restorePurchase
         case crossMark
         case error(String)
     }
@@ -170,8 +169,6 @@ class OnboardingViewController: UIViewController {
         
         alertSubject.sink { [self] alertType in
             switch alertType {
-            case .restorePurchase:
-                present(AlertService.restoreAlert { }, animated: true)
             case .crossMark:
                 present(AlertService.crossAlert { }, animated: true)
             case .error(let message):
