@@ -47,6 +47,7 @@ class OnboardingViewController: UIViewController {
     
     private let onboardingModel: [OnboardingScreenModel]
     private let purchaseManager: PurchaseManager
+    private let feedbackGenerator = UISelectionFeedbackGenerator()
 
     private var onboardingButtonClick = 0
 
@@ -137,6 +138,8 @@ class OnboardingViewController: UIViewController {
         continueSubject.sink { [self] in
             let contentOffSet = onboardingCollectionView.contentOffset
             let additionalWidth = cellWidth + Constants.CollectionView.Configuration.minimumLineSpacingForSection
+            
+            feedbackGenerator.selectionChanged()
             
             if contentOffSet.x + additionalWidth + 2 * Constants.CollectionView.Configuration.insetForSection.left < onboardingCollectionView.contentSize.width {
                 
