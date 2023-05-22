@@ -24,4 +24,12 @@ class AlertService {
         })
         return alert
     }
+    
+    static func errorAlert(message: String, okButtonHandler: @escaping () -> ()) -> UIViewController {
+        let alert = UIAlertController(title: "Error!!!", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            okButtonHandler()
+        })
+        return alert
+    }
 }

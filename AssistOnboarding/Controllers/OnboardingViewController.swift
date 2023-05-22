@@ -7,12 +7,14 @@
 
 import UIKit
 import Combine
+import StoreKit
 
 class OnboardingViewController: UIViewController {
     
     private enum AlertType {
         case restorePurchase
         case crossMark
+        case error(String)
     }
     
     private struct Constants {
@@ -45,6 +47,8 @@ class OnboardingViewController: UIViewController {
     private var cancelable = Set<AnyCancellable>()
     
     private let onboardingModel: [OnboardingScreenModel]
+    private let purchaseManager: PurchaseManager
+
     private var onboardingButtonClick = 0
 
     lazy private var cellWidth = {
@@ -60,8 +64,9 @@ class OnboardingViewController: UIViewController {
     
     // MARK: - Lifecycle
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, model: OnboardingScreensModel) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, model: OnboardingScreensModel, purchaseManager: PurchaseManager) {
         onboardingModel = model.onboardingModel
+        self.purchaseManager = purchaseManager
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -82,6 +87,7 @@ class OnboardingViewController: UIViewController {
         super.viewWillAppear(animated)
 
         subscribeToPublishers()
+        loadProducts()
     }
     
     // MARK: - Actions
@@ -91,7 +97,9 @@ class OnboardingViewController: UIViewController {
     }
     
     @IBAction private func restoreButtonAction(_ sender: Any) {
-        alertSubject.send(.restorePurchase)
+        Task {
+            try await AppStore.sync()
+        }
     }
     
     @IBAction private func crossButtonAction(_ sender: Any) {
@@ -148,6 +156,14 @@ class OnboardingViewController: UIViewController {
                     self.onboardingCollectionView.contentOffset = CGPoint(x: contentOffSet.x + additionalWidth, y: 0)
                     self.onboardingCollectionView.layoutIfNeeded()
                 }
+            } else {
+                guard let product = purchaseManager.products.first(where: { $0.id == ProductType.oneMonth.identifier }) else {
+                    alertSubject.send(.error("Error - product nor found"))
+                    return
+                }
+                Task {
+                    try await purchaseManager.purchase(product)
+                }
             }
         }
         .store(in: &cancelable)
@@ -158,6 +174,8 @@ class OnboardingViewController: UIViewController {
                 present(AlertService.restoreAlert { }, animated: true)
             case .crossMark:
                 present(AlertService.crossAlert { }, animated: true)
+            case .error(let message):
+                present(AlertService.errorAlert(message: message) { }, animated: true)
             }
         }
         .store(in: &cancelable)
@@ -182,13 +200,20 @@ class OnboardingViewController: UIViewController {
     
     private func configureOnboardingButton() {
         if onboardingButtonClick == onboardingModel.count - 1 {
-
             UIView.performWithoutAnimation {
                 self.onboardingButton.setTitle("Try Free & Subscribe", for: .normal)
                 self.onboardingButton.layoutIfNeeded()
             }
-            
-
+        }
+    }
+    
+    private func loadProducts() {
+        Task {
+            do {
+                try await purchaseManager.loadProducts()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }

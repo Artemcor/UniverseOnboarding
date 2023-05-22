@@ -23,6 +23,7 @@ class MainFlowCoordinator {
     // MARK: - Constants
     
     private let window: UIWindow
+    private let purchaseManager = PurchaseManager()
     
     // MARK: - Initializers
     
@@ -36,7 +37,8 @@ class MainFlowCoordinator {
         let model = OnboardingScreensModel()
         let onboardingViewController = OnboardingViewController(nibName: Constants.nibNames.onboardingScreen,
                                                                 bundle: nil,
-                                                                model: model)
+                                                                model: model,
+                                                                purchaseManager: purchaseManager)
         
         window.rootViewController = onboardingViewController
         router = MainRouter(initialController: onboardingViewController)
